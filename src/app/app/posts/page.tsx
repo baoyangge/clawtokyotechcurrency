@@ -8,9 +8,9 @@ import { prisma } from "@/lib/prisma";
 export default async function PostsPage({
   searchParams,
 }: {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const sp = searchParams ?? {};
+  const sp = await searchParams;
   const campus = typeof sp.campus === "string" ? sp.campus : undefined;
   const pair = typeof sp.pair === "string" ? sp.pair : undefined;
 
